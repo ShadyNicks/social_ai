@@ -34,7 +34,8 @@ const handleGenerateLLMResponse = async (req, res) => {
     });
 
     const dataRef = ref(db, "data");
-    await set(dataRef, {
+    const newData = push(dataRef);
+    await set(newData, {
       data: chatCompletion.choices[0].message.content,
       timestamp: Date.now(),
     });
