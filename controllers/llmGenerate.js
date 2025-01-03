@@ -16,7 +16,7 @@ const handleGenerateLLMResponse = async (req, res) => {
       messages: [
         {
           role: "system",
-          content: "Your name is admin",
+          content: "Your name is elon musk",
         },
         {
           role: "user",
