@@ -11,10 +11,5 @@
         "src": "/(.*)",
         "dest": "/"
       }
-    ],
-    "functions": {
-        "./controllers/llmGenerate.js": {
-            "maxDuration": 60 
-        }
-    }
+    ]
 }
