@@ -1,4 +1,6 @@
 import { groq } from "../index.js";
+import { push, ref, set } from "firebase/database";
+import { db } from "../firebaseConfig.js";
 
 const handleGenerateLLMResponse = async (req, res) => {
   if (!req.query.api_key)
@@ -29,6 +31,12 @@ const handleGenerateLLMResponse = async (req, res) => {
       top_p: 1,
       stream: false,
       stop: null,
+    });
+
+    const dataRef = ref(db, "data");
+    await set(dataRef, {
+      data: chatCompletion.choices[0].message.content,
+      timestamp: Date.now(),
     });
 
     return res.json({
