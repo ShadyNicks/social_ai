@@ -1,6 +1,27 @@
 import { groq } from "../index.js";
-import { push, ref, set } from "firebase/database";
+import { push, ref, set, get } from "firebase/database";
 import { db } from "../firebaseConfig.js";
+import { generateComments } from "../utils/generateComments.js";
+
+const handleGenerateComments = async (req, res) => {
+  if (!req.query.api_key)
+    return res.status(400).json({ msg: "No API key was given", code: 0 });
+  if (req.query.api_key !== process.env.API_KEY)
+    return res.status(400).json({ msg: "lol wrong api key", code: 0 });
+
+  const dbRef = ref(db, "media-data/");
+  get(dbRef)
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        generateComments(snapshot.val());
+      } else {
+        console.log("No data available");
+      }
+    })
+    .catch((err) => console.log(err));
+
+  return res.send("ok");
+};
 
 const handleGenerateLLMResponse = async (req, res) => {
   if (!req.query.api_key)
@@ -51,4 +72,4 @@ const handleGenerateLLMResponse = async (req, res) => {
   }
 };
 
-export { handleGenerateLLMResponse };
+export { handleGenerateLLMResponse, handleGenerateComments };
