@@ -13,7 +13,11 @@ const generateComments = async (mediaUserData) => {
       const currentTimeInSeconds = Math.round(Date.now() / 1000);
       console.log(`CURRENT TIME: ${currentTimeInSeconds}`);
 
-      if (commentDelays.val()[userId][postId]) {
+      if (
+        commentDelays.val() &&
+        commentDelays.val()[userId] &&
+        commentDelays.val()[userId][postId]
+      ) {
         console.log(commentDelays.val()[userId][postId]);
 
         if (
