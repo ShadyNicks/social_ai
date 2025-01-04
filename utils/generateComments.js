@@ -89,9 +89,9 @@ const generateComments = async (mediaUserData) => {
                   delay:
                     currentTimeInSeconds +
                     Math.floor(
-                      Math.random() * 240 +
-                        60 +
-                        mediaUserData[userId][postId]["comments"].length * 3
+                      Math.random() * 60 +
+                        1 +
+                        mediaUserData[userId][postId]["comments"].length
                     ),
                 });
 
@@ -107,7 +107,7 @@ const generateComments = async (mediaUserData) => {
 
         const newDbRef = ref(db, "comment-delays/" + userId + "/" + postId);
         set(newDbRef, {
-          delay: currentTimeInSeconds + Math.floor(Math.random() * 240 + 60), // time in seconds
+          delay: currentTimeInSeconds + Math.floor(Math.random() * 60 + 1), // time in seconds
         })
           .then(() => console.log("Done"))
           .catch((err) => console.log(`ERR: ${err}`));
