@@ -87,7 +87,7 @@ const generateComments = async (mediaUserData) => {
                     Math.floor(
                       Math.random() * 240 +
                         60 +
-                        mediaUserData[userId][postId]["comments"].length * 30
+                        mediaUserData[userId][postId]["comments"].length * 3
                     ),
                 });
 

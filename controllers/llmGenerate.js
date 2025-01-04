@@ -14,16 +14,16 @@ const handleGenerateComments = async (req, res) => {
     .then(async (snapshot) => {
       if (snapshot.exists()) {
         generateComments(snapshot.val());
+        return res.send("ok");
       } else {
         console.log("No data available");
-        // return res.send("ok");
+        return res.send("ok");
       }
     })
     .catch((err) => {
       console.log(err);
       return res.send(err);
     });
-  return res.send("ok");
 };
 
 const handleGenerateLLMResponse = async (req, res) => {
