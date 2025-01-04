@@ -13,17 +13,17 @@ const handleGenerateComments = async (req, res) => {
   get(dbRef)
     .then(async (snapshot) => {
       if (snapshot.exists()) {
-        await generateComments(snapshot.val());
-        return res.send("ok");
+        generateComments(snapshot.val());
       } else {
         console.log("No data available");
-        return res.send("ok");
+        // return res.send("ok");
       }
     })
     .catch((err) => {
       console.log(err);
       return res.send(err);
     });
+  return res.send("ok");
 };
 
 const handleGenerateLLMResponse = async (req, res) => {
