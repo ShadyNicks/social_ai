@@ -11,9 +11,9 @@ const handleGenerateComments = async (req, res) => {
 
   const dbRef = ref(db, "media-data/");
   get(dbRef)
-    .then((snapshot) => {
+    .then(async (snapshot) => {
       if (snapshot.exists()) {
-        generateComments(snapshot.val());
+        await generateComments(snapshot.val());
         return res.send("ok");
       } else {
         console.log("No data available");
