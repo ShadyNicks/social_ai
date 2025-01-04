@@ -10,7 +10,7 @@ const handlePostText = async (req, res) => {
   const textData = {
     content,
     likes: 0,
-    comments: 0,
+    comments: [],
     createdAt,
   };
 
